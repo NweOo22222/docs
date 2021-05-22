@@ -87,7 +87,7 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/definitions/Headline"
+              "$ref" : "#/definitions/Article"
             }
           }
         }

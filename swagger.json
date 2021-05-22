@@ -35,7 +35,7 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/components/schemas/Headline"
+              "$ref" : "#/definitions/Headline"
             }
           }
         }
@@ -63,7 +63,7 @@
               "type" : "array",
               "description" : "Article[]",
               "items" : {
-                "$ref" : "#/components/schemas/Article"
+                "$ref" : "#/definitions/Article"
               }
             }
           }
@@ -86,110 +86,97 @@
           "200" : {
             "description" : "OK",
             "schema" : {
-              "$ref" : "#/components/schemas/Article"
+              "$ref" : "#/definitions/Headline"
             }
           }
         }
       }
     }
   },
-  "components" : {
-    "schemas" : {
-      "Headline" : {
-        "type" : "object",
-        "required" : [ "_id", "id", "title", "source", "timestamp" ],
-        "properties" : {
-          "_id" : {
-            "$ref" : "#/components/schemas/ObjectRef"
-          },
-          "id" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "source" : {
-            "type" : "string"
-          },
-          "timestamp" : {
-            "$ref" : "#/components/schemas/Timestamp"
-          }
-        }
-      },
-      "Article" : {
-        "type" : "object",
-        "required" : [ "id", "slug", "title", "source", "link", "image", "timestamp", "post_id" ],
-        "properties" : {
-          "article_id" : {
-            "$ref" : "#/components/schemas/ObjectRef"
-          },
-          "id" : {
-            "type" : "string"
-          },
-          "slug" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "source" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "content" : {
-            "type" : "string"
-          },
-          "timestamp" : {
-            "$ref" : "#/components/schemas/Timestamp"
-          },
-          "link" : {
-            "$ref" : "#/components/schemas/URL"
-          },
-          "image" : {
-            "$ref" : "#/components/schemas/URL"
-          },
-          "post_id" : {
-            "type" : "string"
-          },
-          "photo_id" : {
-            "type" : "string"
-          },
-          "video_id" : {
-            "type" : "string"
-          },
-          "tg_id" : {
-            "type" : "string"
-          }
-        }
-      },
-      "URL" : {
-        "type" : "string",
-        "description" : "URL",
-        "example" : "https://example.com/path/to/file"
-      },
-      "Timestamp" : {
-        "type" : "integer",
-        "description" : "Unix Timestamp",
-        "example" : 1621712221647
-      },
-      "ObjectRef" : {
-        "type" : "string",
-        "description" : "Object Reference ID",
-        "example" : "<ObjectRef#>"
-      }
-    }
-  },
   "definitions" : {
-    "Model" : {
+    "Headline" : {
       "type" : "object",
+      "required" : [ "_id", "id", "title", "source", "timestamp" ],
       "properties" : {
+        "_id" : {
+          "$ref" : "#/definitions/ObjectRef"
+        },
         "id" : {
-          "type" : "integer",
-          "format" : "int64"
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "$ref" : "#/definitions/Timestamp"
         }
       }
+    },
+    "Article" : {
+      "type" : "object",
+      "required" : [ "id", "slug", "title", "source", "link", "image", "timestamp", "post_id" ],
+      "properties" : {
+        "article_id" : {
+          "$ref" : "#/definitions/ObjectRef"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "slug" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "source" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "$ref" : "#/definitions/Timestamp"
+        },
+        "link" : {
+          "$ref" : "#/definitions/URL"
+        },
+        "image" : {
+          "$ref" : "#/definitions/URL"
+        },
+        "post_id" : {
+          "type" : "string"
+        },
+        "photo_id" : {
+          "type" : "string"
+        },
+        "video_id" : {
+          "type" : "string"
+        },
+        "tg_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "URL" : {
+      "type" : "string",
+      "description" : "URL",
+      "example" : "https://example.com/path/to/file"
+    },
+    "Timestamp" : {
+      "type" : "integer",
+      "description" : "Unix Timestamp",
+      "example" : 1621712221647
+    },
+    "ObjectRef" : {
+      "type" : "string",
+      "description" : "Object Reference ID",
+      "example" : "<ObjectRef#>"
     }
   }
 }

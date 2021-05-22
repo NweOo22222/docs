@@ -37,12 +37,10 @@
         } ],
         "responses" : {
           "200" : {
-            "content" : {
-              "description" : "OK",
-              "schema" : {
-                "type" : "object",
-                "$ref" : "#/components/schemas/Headline"
-              }
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "$ref" : "#/components/schemas/Headline"
             }
           }
         }
@@ -99,12 +97,10 @@
         } ],
         "responses" : {
           "200" : {
-            "content" : {
-              "description" : "OK",
-              "schema" : {
-                "type" : "object",
-                "$ref" : "#/components/schemas/Article"
-              }
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "$ref" : "#/components/schemas/Article"
             }
           }
         }

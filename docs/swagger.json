@@ -54,7 +54,6 @@
         "parameters" : [ {
           "in" : "query",
           "name" : "limit",
-          "required" : false,
           "schema" : {
             "type" : "integer",
             "default" : 10
@@ -62,10 +61,7 @@
         }, {
           "in" : "query",
           "name" : "paging",
-          "required" : false,
-          "schema" : {
-            "type" : "ObjectRef"
-          }
+          "type" : "ObjectRef"
         } ],
         "responses" : {
           "200" : {

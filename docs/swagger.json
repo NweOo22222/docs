@@ -1,0 +1,131 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/etherio97/com-nweoo-api/1.0.0"
+  } ],
+  "info" : {
+    "description" : "သတင်းမှန်များကို အချိန်နဲ့တပြေးညီ သိရှိနိုင်အောင် ဆောင်ရွက်ပေးနေပါတယ်။",
+    "version" : "1.0.0",
+    "title" : "NweOo Docs",
+    "contact" : {
+      "email" : "nweoo22222@yandex.com"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "https://choosealicense.com/licenses/mit/index.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "any",
+    "description" : "Access without any credentials"
+  }, {
+    "name" : "auth",
+    "description" : "Required OAuth Token"
+  } ],
+  "paths" : {
+    "/articles" : {
+      "get" : {
+        "tags" : [ "any" ],
+        "summary" : "list articles",
+        "operationId" : "listArticles",
+        "description" : "Get the list of articles\n",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "limit to last",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "maximum" : 100,
+            "default" : 10
+          }
+        }, {
+          "in" : "query",
+          "name" : "paging",
+          "description" : "start before",
+          "schema" : {
+            "$ref" : "#/components/schemas/ObjectID"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Article"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Article" : {
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "$ref" : "#/components/schemas/ObjectID"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "source" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "timestamp" : {
+            "$ref" : "#/components/schemas/Timestamp"
+          },
+          "link" : {
+            "type" : "string"
+          },
+          "image" : {
+            "type" : "string"
+          },
+          "post_id" : {
+            "type" : "string"
+          },
+          "photo_id" : {
+            "type" : "string"
+          },
+          "video_id" : {
+            "type" : "string"
+          },
+          "tg_id" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Timestamp" : {
+        "type" : "integer",
+        "format" : "int32",
+        "description" : "unix date and time in milliseconds",
+        "example" : 1621712221647
+      },
+      "ObjectID" : {
+        "type" : "string",
+        "example" : "-MaJljuu1V9vAFopDejP"
+      }
+    }
+  }
+}

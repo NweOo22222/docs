@@ -71,11 +71,15 @@
     "schemas" : {
       "Article" : {
         "type" : "object",
+        "required" : [ "id", "slug", "title", "source", "link", "image", "timestamp", "post_id" ],
         "properties" : {
-          "_id" : {
+          "article_id" : {
             "$ref" : "#/components/schemas/ObjectID"
           },
           "id" : {
+            "type" : "string"
+          },
+          "slug" : {
             "type" : "string"
           },
           "title" : {
@@ -94,10 +98,10 @@
             "$ref" : "#/components/schemas/Timestamp"
           },
           "link" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/URL"
           },
           "image" : {
-            "type" : "string"
+            "$ref" : "#/components/schemas/URL"
           },
           "post_id" : {
             "type" : "string"
@@ -113,10 +117,14 @@
           }
         }
       },
+      "URL" : {
+        "type" : "string",
+        "description" : "URL",
+        "example" : "https://example.com/path/to/..."
+      },
       "Timestamp" : {
         "type" : "integer",
         "format" : "int32",
-        "description" : "unix date and time in milliseconds",
         "example" : 1621712221647
       },
       "ObjectID" : {

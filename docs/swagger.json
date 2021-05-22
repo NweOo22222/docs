@@ -72,6 +72,7 @@
           "200" : {
             "description" : "OK",
             "schema" : {
+              "type" : "object",
               "$ref" : "#/components/schemas/Article"
             }
           }

@@ -21,28 +21,28 @@
   "paths" : {
     "/news/headlines" : {
       "get" : {
-        "tags" : [ "news" ]
-      },
-      "summary" : "GET /news/headlines",
-      "operationId" : "list-headlines",
-      "parameters" : [ {
-        "in" : "query",
-        "name" : "limit",
-        "required" : false,
-        "schema" : {
-          "type" : {
-            "type" : "integer",
-            "default" : 10
+        "tags" : [ "news" ],
+        "summary" : "GET /news/headlines",
+        "operationId" : "list-headlines",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "limit",
+          "required" : false,
+          "schema" : {
+            "type" : {
+              "type" : "integer",
+              "default" : 10
+            }
           }
-        }
-      } ],
-      "responses" : {
-        "200" : {
-          "content" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "object",
-              "$ref" : "#/components/schemas/Headline"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "description" : "OK",
+              "schema" : {
+                "type" : "object",
+                "$ref" : "#/components/schemas/Headline"
+              }
             }
           }
         }

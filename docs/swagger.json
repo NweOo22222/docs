@@ -186,8 +186,8 @@
       },
       "ObjectRef" : {
         "type" : "string",
-        "description" : "Object Ref#",
-        "example" : "-MaJljuu1V9vAFopDejP"
+        "description" : "Object Reference ID",
+        "example" : "<Ref#>"
       }
     }
   }

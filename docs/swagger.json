@@ -23,25 +23,21 @@
       "get" : {
         "tags" : [ "news" ],
         "summary" : "GET /news/articles",
-        "operationId" : "ListArticles",
-        "description" : "Get the list of articles",
+        "operationId" : "list-articles",
         "parameters" : [ {
           "in" : "query",
           "name" : "limit",
-          "description" : "Limit to last",
           "required" : false,
           "schema" : {
             "type" : "integer",
-            "format" : "int32",
-            "maximum" : 100,
             "default" : 10
           }
         }, {
           "in" : "query",
           "name" : "paging",
-          "description" : "Start Before",
+          "required" : false,
           "schema" : {
-            "$ref" : "#/components/schemas/ObjectID"
+            "type" : "ObjectRef"
           }
         } ],
         "responses" : {
@@ -49,7 +45,7 @@
             "description" : "OK",
             "schema" : {
               "type" : "array",
-              "description" : "Array<Article>",
+              "description" : "Article[]",
               "items" : {
                 "$ref" : "#/components/schemas/Article"
               }
@@ -62,15 +58,14 @@
       "get" : {
         "tags" : [ "news" ],
         "summary" : "GET /news/articles/{object_id}",
-        "description" : "Get the article",
-        "operationId" : "GetArticle",
+        "operationId" : "get-article",
         "parameters" : [ {
           "in" : "path",
           "name" : "article_id",
-          "description" : "Article",
+          "description" : "Article Ref",
           "required" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/ObjectID"
+            "$ref" : "#/components/schemas/ObjectRef"
           }
         } ],
         "responses" : {
@@ -91,7 +86,7 @@
         "required" : [ "id", "slug", "title", "source", "link", "image", "timestamp", "post_id" ],
         "properties" : {
           "article_id" : {
-            "$ref" : "#/components/schemas/ObjectID"
+            "$ref" : "#/components/schemas/ObjectRef"
           },
           "id" : {
             "type" : "string"
@@ -137,14 +132,14 @@
       "URL" : {
         "type" : "string",
         "description" : "URL",
-        "example" : "https://example.com/path/to/..."
+        "example" : "https://example.com/path/to/file"
       },
       "Timestamp" : {
         "type" : "integer",
         "format" : "int32",
         "example" : 1621712221647
       },
-      "ObjectID" : {
+      "ObjectRef" : {
         "type" : "string",
         "example" : "-MaJljuu1V9vAFopDejP"
       }

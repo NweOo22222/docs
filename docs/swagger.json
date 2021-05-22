@@ -3,6 +3,9 @@
   "servers" : [ {
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/etherio97/com-nweoo-api/1.0.0"
+  }, {
+    "description" : "NweOo API",
+    "url" : "https://api.nweoo.com"
   } ],
   "info" : {
     "description" : "သတင်းမှန်များကို အချိန်နဲ့တပြေးညီ သိရှိနိုင်အောင် ဆောင်ရွက်ပေးနေပါတယ်။",
@@ -17,23 +20,20 @@
     }
   },
   "tags" : [ {
-    "name" : "any",
-    "description" : "Access without any credentials"
-  }, {
-    "name" : "auth",
-    "description" : "Required OAuth Token"
+    "name" : "news",
+    "description" : "List, create, get, edit and delete News Article"
   } ],
   "paths" : {
-    "/articles" : {
+    "/news/articles" : {
       "get" : {
-        "tags" : [ "any" ],
-        "summary" : "list articles",
-        "operationId" : "listArticles",
-        "description" : "Get the list of articles\n",
+        "tags" : [ "news" ],
+        "summary" : "List Articles",
+        "operationId" : "articles",
+        "description" : "Get the list of articles",
         "parameters" : [ {
           "in" : "query",
           "name" : "limit",
-          "description" : "limit to last",
+          "description" : "Limit to last",
           "required" : false,
           "schema" : {
             "type" : "integer",
@@ -44,14 +44,14 @@
         }, {
           "in" : "query",
           "name" : "paging",
-          "description" : "start before",
+          "description" : "Start Before",
           "schema" : {
             "$ref" : "#/components/schemas/ObjectID"
           }
         } ],
         "responses" : {
           "200" : {
-            "description" : "search results matching criteria",
+            "description" : "Get the list of articles sorted by key.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -62,9 +62,6 @@
                 }
               }
             }
-          },
-          "400" : {
-            "description" : "bad input parameter"
           }
         }
       }

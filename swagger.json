@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "host" : "api.nweoo.com",
-  "produces" : "-application/json",
+  "produces" : [ "application/json" ],
   "info" : {
     "description" : "သတင်းမှန်များကို အချိန်နဲ့တပြေးညီ သိရှိနိုင်အောင် ဆောင်ရွက်ပေးနေပါတယ်။",
     "version" : "1.0.0",
@@ -28,18 +28,13 @@
           "in" : "query",
           "name" : "limit",
           "required" : false,
-          "schema" : {
-            "type" : {
-              "type" : "integer",
-              "default" : 10
-            }
-          }
+          "type" : "integer",
+          "default" : 10
         } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "type" : "object",
               "$ref" : "#/components/schemas/Headline"
             }
           }
@@ -54,14 +49,12 @@
         "parameters" : [ {
           "in" : "query",
           "name" : "limit",
-          "schema" : {
-            "type" : "integer",
-            "default" : 10
-          }
+          "type" : "integer",
+          "default" : 10
         }, {
           "in" : "query",
           "name" : "paging",
-          "type" : "ObjectRef"
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
@@ -85,17 +78,14 @@
         "parameters" : [ {
           "in" : "path",
           "name" : "article_id",
-          "description" : "Article Ref",
+          "description" : "Article Reference ID",
           "required" : true,
-          "schema" : {
-            "$ref" : "#/components/schemas/ObjectRef"
-          }
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "OK",
             "schema" : {
-              "type" : "object",
               "$ref" : "#/components/schemas/Article"
             }
           }
@@ -187,7 +177,7 @@
       "ObjectRef" : {
         "type" : "string",
         "description" : "Object Reference ID",
-        "example" : "<Ref#>"
+        "example" : "<ObjectRef#>"
       }
     }
   }

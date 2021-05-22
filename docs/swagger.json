@@ -1,11 +1,9 @@
 {
   "openapi" : "3.0.0",
+  "host" : "api.nweoo.com",
   "servers" : [ {
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/etherio97/com-nweoo-api/1.0.0"
-  }, {
-    "description" : "NweOo API",
-    "url" : "https://api.nweoo.com"
   } ],
   "info" : {
     "description" : "သတင်းမှန်များကို အချိန်နဲ့တပြေးညီ သိရှိနိုင်အောင် ဆောင်ရွက်ပေးနေပါတယ်။",
@@ -21,13 +19,13 @@
   },
   "tags" : [ {
     "name" : "news",
-    "description" : "List, create, get, edit and delete News Article"
+    "description" : "News"
   } ],
   "paths" : {
     "/news/articles" : {
       "get" : {
         "tags" : [ "news" ],
-        "summary" : "List Articles",
+        "summary" : "GET /news/articles",
         "operationId" : "articles",
         "description" : "Get the list of articles",
         "parameters" : [ {
@@ -59,6 +57,34 @@
                   "items" : {
                     "$ref" : "#/components/schemas/Article"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/articles/{article_id}" : {
+      "get" : {
+        "tags" : [ "news" ],
+        "summary" : "GET /news/articles/{object_id}",
+        "description" : "Get the article",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "article_id",
+          "description" : "Article Object ID",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/ObjectID"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Get the article",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Article"
                 }
               }
             }

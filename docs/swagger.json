@@ -25,7 +25,7 @@
       "get" : {
         "tags" : [ "news" ],
         "summary" : "GET /news/articles",
-        "operationId" : "articles",
+        "operationId" : "ListArticles",
         "description" : "Get the list of articles",
         "parameters" : [ {
           "in" : "query",
@@ -48,11 +48,12 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Get the list of articles sorted by key.",
+            "description" : "OK",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "array",
+                  "description" : "Array<Article>",
                   "items" : {
                     "$ref" : "#/components/schemas/Article"
                   }
@@ -68,10 +69,11 @@
         "tags" : [ "news" ],
         "summary" : "GET /news/articles/{object_id}",
         "description" : "Get the article",
+        "operationId" : "GetArticle",
         "parameters" : [ {
           "in" : "path",
           "name" : "article_id",
-          "description" : "Article Object ID",
+          "description" : "Article",
           "required" : true,
           "schema" : {
             "$ref" : "#/components/schemas/ObjectID"
@@ -79,7 +81,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Get the article",
+            "description" : "OK",
             "content" : {
               "application/json" : {
                 "schema" : {

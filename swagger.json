@@ -6,13 +6,14 @@
     "description" : "သတင်းမှန်များကို အချိန်နဲ့တပြေးညီ သိရှိနိုင်အောင် ဆောင်ရွက်ပေးနေပါတယ်။",
     "version" : "1.0.0",
     "title" : "NweOo Docs",
-    "contact" : {
-      "email" : "nweoo22222@yandex.com"
-    },
     "license" : {
       "name" : "MIT",
       "url" : "https://choosealicense.com/licenses/mit/index.html"
-    }
+    },
+    "contact" : {
+      "name" : "NweOo"
+    },
+    "termsOfService" : "https://nweoo.com/terms-of-services"
   },
   "tags" : [ {
     "name" : "news",

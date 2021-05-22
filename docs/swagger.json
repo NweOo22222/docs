@@ -1,6 +1,5 @@
 {
   "openapi" : "3.0.0",
-  "host" : "api.nweoo.com",
   "servers" : [ {
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/etherio97/com-nweoo-api/1.0.0"

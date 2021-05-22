@@ -38,10 +38,12 @@
       } ],
       "responses" : {
         "200" : {
-          "description" : "OK",
-          "schema" : {
-            "type" : "object",
-            "$ref" : "#/components/schemas/Headline"
+          "content" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "object",
+              "$ref" : "#/components/schemas/Headline"
+            }
           }
         }
       }
@@ -97,10 +99,12 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "object",
-              "$ref" : "#/components/schemas/Article"
+            "content" : {
+              "description" : "OK",
+              "schema" : {
+                "type" : "object",
+                "$ref" : "#/components/schemas/Article"
+              }
             }
           }
         }

@@ -1,0 +1,192 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "NweOo"
+  termsOfService: "https://www.nweoo.com/terms-of-services"
+  contact:
+    email: "nweoo22222@yandex.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.nweoo.com"
+basePath: "/"
+tags:
+  - name: "news"
+    description: "သတင်းများ"
+  - name: "reports"
+    description: "ပေးပို့ချက်များ"
+schemes:
+  - "https"
+paths:
+  /news/headlines:
+    get:
+      tags:
+        - "news"
+      summary: "သတင်းခေါင်းစဉ်များ"
+      parameters:
+        - in: "query"
+          name: "limit"
+          description: "အရေအတွက်"
+          type: "number"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/NewsHeadline"
+  /news/articles:
+    get:
+      tags:
+        - "news"
+      summary: "သတင်းဆောင်းပါးများ"
+      description: ""
+      operationId: "listNewsArticle"
+      parameters:
+        - in: "query"
+          name: "limit"
+          description: "အရေအတွက်"
+          type: "number"
+        - in: "query"
+          name: "startDate"
+          description: ""
+          type: "string"
+        - in: "query"
+          name: "endDate"
+          description: ""
+          type: "string"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/NewsArticle"
+  /news/articles/{id}:
+    get:
+      tags:
+        - "news"
+      summary: "သတင်းဆောင်းပါးရယူခြင်း"
+      description: ""
+      operationId: "getNewsArticle"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "သတင်းစဉ်အမှတ်"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/NewsArticle"
+        "404":
+          description: "Not Found"
+  /reports:
+    get:
+      tags:
+        - "reports"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/CitizenReport"
+  /reports/{id}:
+    get:
+      tags:
+        - "reports"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CitizenReport"
+        "404":
+          description: "Not Found"
+definitions:
+  URL:
+    type: "string"
+    description: "URL"
+  ReferenceID:
+    type: "string"
+    # description: "Index/Key"
+  NewsHeadline:
+    type: "object"
+    properties:
+      $ref:
+        $ref: "#/definitions/ReferenceID"
+      _ref:
+        $ref: "#/definitions/ReferenceID"
+      title:
+        type: "string"
+      source:
+        type: "string"
+        enum:
+          - "DVB"
+          - "RFA"
+          - "VOA"
+      link:
+        $ref: "#/definitions/URL"
+      timestamp:
+        type: "number"
+  NewsArticle:
+    type: "object"
+    properties:
+      $ref:
+        $ref: "#/definitions/ReferenceID"
+      id:
+        type: "string"
+      title:
+        type: "string"
+      content:
+        type: "string"
+      source:
+        type: "string"
+        enum:
+          - "DVB"
+          - "RFA"
+          - "VOA"
+      image:
+        $ref: "#/definitions/URL"
+      link:
+        $ref: "#/definitions/URL"
+      timestamp:
+        type: "number"
+      photo_id:
+        type: "number"
+        description: "Facebook Photo ID"
+      video_id:
+        type: "number"
+        description: "Facebook Video ID"
+      post_id:
+        type: "number"
+        description: "Facebook Post ID"
+      message_id:
+        type: "number"
+        description: "Telegram Message ID"
+  CitizenReport:
+    type: "object"
+    properties:
+      $ref:
+        $ref: "#/definitions/ReferenceID"
+      id:
+        type: "string"
+      message:
+        type: "string"
+      photo:
+        $ref: "#/definitions/URL"
+      timestamp:
+        type: "number"
+      type:
+        type: "string"
+        enum:
+          - "sms"
+          - "messenger"
+          - "telegram"
+      deleted:
+        type: boolean

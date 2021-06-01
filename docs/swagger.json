@@ -1,193 +1,289 @@
 {
-  "openapi" : 2,
-  "host" : "api.nweoo.com",
-  "produces" : "-application/json",
-  "info" : {
-    "description" : "သတင်းမှန်များကို အချိန်နဲ့တပြေးညီ သိရှိနိုင်အောင် ဆောင်ရွက်ပေးနေပါတယ်။",
-    "version" : "1.0.0",
-    "title" : "NweOo Docs",
-    "contact" : {
-      "email" : "nweoo22222@yandex.com"
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "NweOo",
+    "termsOfService": "https://www.nweoo.com/terms-of-services",
+    "contact": {
+      "email": "nweoo22222@yandex.com"
     },
-    "license" : {
-      "name" : "MIT",
-      "url" : "https://choosealicense.com/licenses/mit/index.html"
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "tags" : [ {
-    "name" : "news",
-    "description" : "News"
-  } ],
-  "paths" : {
-    "/news/headlines" : {
-      "get" : {
-        "tags" : [ "news" ],
-        "summary" : "GET /news/headlines",
-        "operationId" : "list-headlines",
-        "parameters" : [ {
-          "in" : "query",
-          "name" : "limit",
-          "required" : false,
-          "schema" : {
-            "type" : {
-              "type" : "integer",
-              "default" : 10
-            }
+  "host": "api.nweoo.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "news",
+      "description": "သတင်းများ"
+    },
+    {
+      "name": "reports",
+      "description": "ပေးပို့ချက်များ"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/news/headlines": {
+      "get": {
+        "tags": [
+          "news"
+        ],
+        "summary": "သတင်းခေါင်းစဉ်များ",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "အရေအတွက်",
+            "type": "number"
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "object",
-              "$ref" : "#/components/schemas/Headline"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NewsHeadline"
             }
           }
         }
       }
     },
-    "/news/articles" : {
-      "get" : {
-        "tags" : [ "news" ],
-        "summary" : "GET /news/articles",
-        "operationId" : "list-articles",
-        "parameters" : [ {
-          "in" : "query",
-          "name" : "limit",
-          "schema" : {
-            "type" : "integer",
-            "default" : 10
+    "/news/articles": {
+      "get": {
+        "tags": [
+          "news"
+        ],
+        "summary": "သတင်းဆောင်းပါးများ",
+        "description": "",
+        "operationId": "listNewsArticle",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "အရေအတွက်",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "startDate",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "description": "",
+            "type": "string"
           }
-        }, {
-          "in" : "query",
-          "name" : "paging",
-          "type" : "ObjectRef"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "array",
-              "description" : "Article[]",
-              "items" : {
-                "$ref" : "#/components/schemas/Article"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NewsArticle"
               }
             }
           }
         }
       }
     },
-    "/news/articles/{article_id}" : {
-      "get" : {
-        "tags" : [ "news" ],
-        "summary" : "GET /news/articles/{object_id}",
-        "operationId" : "get-article",
-        "parameters" : [ {
-          "in" : "path",
-          "name" : "article_id",
-          "description" : "Article Ref",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/components/schemas/ObjectRef"
+    "/news/articles/{id}": {
+      "get": {
+        "tags": [
+          "news"
+        ],
+        "summary": "သတင်းဆောင်းပါးရယူခြင်း",
+        "description": "",
+        "operationId": "getNewsArticle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "သတင်းစဉ်အမှတ်",
+            "required": true,
+            "type": "string"
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "schema" : {
-              "type" : "object",
-              "$ref" : "#/components/schemas/Article"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NewsArticle"
             }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/reports": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CitizenReport"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{id}": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CitizenReport"
+            }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
     }
   },
-  "components" : {
-    "schemas" : {
-      "Headline" : {
-        "type" : "object",
-        "required" : [ "_id", "id", "title", "source", "timestamp" ],
-        "properties" : {
-          "_id" : {
-            "$ref" : "#/components/schemas/ObjectRef"
-          },
-          "id" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "source" : {
-            "type" : "string"
-          },
-          "timestamp" : {
-            "$ref" : "#/components/schemas/Timestamp"
-          }
+  "definitions": {
+    "URL": {
+      "type": "string",
+      "description": "URL"
+    },
+    "ReferenceID": {
+      "type": "string"
+    },
+    "NewsHeadline": {
+      "type": "object",
+      "properties": {
+        "$ref": {
+          "$ref": "#/definitions/ReferenceID"
+        },
+        "_ref": {
+          "$ref": "#/definitions/ReferenceID"
+        },
+        "title": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "DVB",
+            "RFA",
+            "VOA"
+          ]
+        },
+        "link": {
+          "$ref": "#/definitions/URL"
+        },
+        "timestamp": {
+          "type": "number"
         }
-      },
-      "Article" : {
-        "type" : "object",
-        "required" : [ "id", "slug", "title", "source", "link", "image", "timestamp", "post_id" ],
-        "properties" : {
-          "article_id" : {
-            "$ref" : "#/components/schemas/ObjectRef"
-          },
-          "id" : {
-            "type" : "string"
-          },
-          "slug" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "source" : {
-            "type" : "string"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "content" : {
-            "type" : "string"
-          },
-          "timestamp" : {
-            "$ref" : "#/components/schemas/Timestamp"
-          },
-          "link" : {
-            "$ref" : "#/components/schemas/URL"
-          },
-          "image" : {
-            "$ref" : "#/components/schemas/URL"
-          },
-          "post_id" : {
-            "type" : "string"
-          },
-          "photo_id" : {
-            "type" : "string"
-          },
-          "video_id" : {
-            "type" : "string"
-          },
-          "tg_id" : {
-            "type" : "string"
-          }
+      }
+    },
+    "NewsArticle": {
+      "type": "object",
+      "properties": {
+        "$ref": {
+          "$ref": "#/definitions/ReferenceID"
+        },
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "DVB",
+            "RFA",
+            "VOA"
+          ]
+        },
+        "image": {
+          "$ref": "#/definitions/URL"
+        },
+        "link": {
+          "$ref": "#/definitions/URL"
+        },
+        "timestamp": {
+          "type": "number"
+        },
+        "photo_id": {
+          "type": "number",
+          "description": "Facebook Photo ID"
+        },
+        "video_id": {
+          "type": "number",
+          "description": "Facebook Video ID"
+        },
+        "post_id": {
+          "type": "number",
+          "description": "Facebook Post ID"
+        },
+        "message_id": {
+          "type": "number",
+          "description": "Telegram Message ID"
         }
-      },
-      "URL" : {
-        "type" : "string",
-        "description" : "URL",
-        "example" : "https://example.com/path/to/file"
-      },
-      "Timestamp" : {
-        "type" : "integer",
-        "description" : "Unix Timestamp",
-        "example" : 1621712221647
-      },
-      "ObjectRef" : {
-        "type" : "string",
-        "description" : "Object Reference ID",
-        "example" : "<Ref#>"
+      }
+    },
+    "CitizenReport": {
+      "type": "object",
+      "properties": {
+        "$ref": {
+          "$ref": "#/definitions/ReferenceID"
+        },
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "photo": {
+          "$ref": "#/definitions/URL"
+        },
+        "timestamp": {
+          "type": "number"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "sms",
+            "messenger",
+            "telegram"
+          ]
+        },
+        "deleted": {
+          "type": "boolean"
+        }
       }
     }
   }
